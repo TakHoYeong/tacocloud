@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class CartItem {\n  constructor(taco) {\n    this.quantity = 1;\n    this.taco = taco;\n  }\n  get lineTotal() {\n    return this.quantity * 4.99;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
