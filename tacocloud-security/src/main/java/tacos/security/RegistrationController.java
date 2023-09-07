@@ -1,10 +1,12 @@
 package tacos.security;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import tacos.User;
 import tacos.data.UserRepository;
 
-@Controller
+@RestController
 @RequestMapping("/register")
 @CrossOrigin("*")
 public class RegistrationController {
@@ -24,9 +26,10 @@ public class RegistrationController {
   }
   
   @PostMapping(consumes="application/json")
-  public String processRegistration(@RequestBody RegistrationForm form) {
-    userRepo.save(form.toUser(passwordEncoder));
-    return "redirect:/login";
+  @ResponseStatus(HttpStatus.CREATED)
+  public User processRegistration(@RequestBody RegistrationForm form) {
+    return userRepo.save(form.toUser(passwordEncoder));
+
   }
 
 }
